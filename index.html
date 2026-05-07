@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Login System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Container -->
+    <div class="background-container">
+        <div class="bg-image" id="bgImage"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <!-- Main Container with Pages -->
+    <div class="pages-container">
+
+        <!-- PAGE 1: Welcome Page -->
+        <div class="page active" id="page1">
+            <div class="page-content welcome-content">
+                <div class="welcome-box">
+                    <div class="logo-circle">
+                        <i class="icon">🔐</i>
+                    </div>
+                    <h1  class="welcome-title">Welcome to Premium Auth</h1>
+                    <p class="welcome-subtitle">Secure, Fast & Reliable Authentication System</p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Military-Grade Encryption</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Two-Factor Authentication</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Premium Features</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+
+                    <div class="welcome-buttons">
+                        <button class="btn btn-primary" onclick="nextPage()">Get Started</button>
+                        <button class="btn btn-secondary" onclick="scrollDown()">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: Authentication Choice -->
+        <div class="page" id="page2">
+            <div class="page-content auth-choice-content">
+                <div class="auth-choice-box">
+                    <h2>Choose Your Path</h2>
+                    <p class="subtitle">Sign in or create a new account</p>
+
+                    <div class="auth-options">
+                        <div class="auth-option-card" onclick="showLoginForm()">
+                            <div class="option-icon">👤</div>
+                            <h3>Existing User?</h3>
+                            <p>Sign in to your account</p>
+                            <button class="btn btn-outline">Login</button>
+                        </div>
+
+                        <div class="auth-option-card" onclick="showSignupForm()">
+                            <div class="option-icon">✨</div>
+                            <h3>New Here?</h3>
+                            <p>Create your premium account</p>
+                            <button class="btn btn-outline">Sign Up</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-back" onclick="prevPage()">← Back</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 3: Login Form -->
+        <div class="page" id="page3">
+            <div class="page-content form-content">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Login to Your Account</h2>
+                        <p>Enter your credentials to continue</p>
+                    </div>
+
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">✉️</span>
+                                <input 
+                                    type="email" 
+                                    id="loginEmail" 
+                                    placeholder="you@example.com"
+                                    required
+                                >
+                            </div>
+                            <span class="error-msg" id="emailError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">🔒</span>
+                                <input 
+                                    type="password" 
+                                    id="loginPassword" 
+                                    placeholder="••••••••"
+                                    required
+                                >
+                                <span class="toggle-password" onclick="togglePassword('loginPassword')">👁️</span>
+                            </div>
+                            <span class="error-msg" id="passwordError"></span>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="rememberMe">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Login</button>
+                    </form>
+
+                    <div class="form-divider">
+                        <span>Or continue with</span>
+                    </div>
+
+                    <div class="social-buttons">
+                        <button class="social-btn google">
+                            <span>Google</span>
+                        </button>
+                        <button class="social-btn github">
+                            <span>GitHub</span>
+                        </button>
+                        <button class="social-btn linkedin">
+                            <span>LinkedIn</span>
+                        </button>
+                    </div>
+
+                    <p class="form-footer">
+                        Don't have an account? <a href="#" onclick="showSignupForm()">Sign up</a>
+                    </p>
+
+                    <button class="btn-back" onclick="prevPage()">← Back</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 4: Signup Form -->
+        <div class="page" id="page4">
+            <div class="page-content form-content">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Create Your Account</h2>
+                        <p>Join our premium community</p>
+                    </div>
+
+                    <form id="signupForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">👤</span>
+                                <input 
+                                    type="text" 
+                                    id="fullName" 
+                                    placeholder="John Doe"
+                                    required
+                                >
+                            </div>
+                            <span class="error-msg" id="nameError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signupEmail">Email Address</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">✉️</span>
+                                <input 
+                                    type="email" 
+                                    id="signupEmail" 
+                                    placeholder="you@example.com"
+                                    required
+                                >
+                            </div>
+                            <span class="error-msg" id="signupEmailError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📱</span>
+                                <input 
+                                    type="tel" 
+                                    id="phoneNumber" 
+                                    placeholder="+1 (555) 000-0000"
+                                    required
+                                >
+                            </div>
+                            <span class="error-msg" id="phoneError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">🔒</span>
+                                <input 
+                                    type="password" 
+                                    id="signupPassword" 
+                                    placeholder="••••••••"
+                                    required
+                                >
+                                <span class="toggle-password" onclick="togglePassword('signupPassword')">👁️</span>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar" id="strengthBar"></div>
+                                <span class="strength-text" id="strengthText">Weak</span>
+                            </div>
+                            <span class="error-msg" id="signupPasswordError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">🔒</span>
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword" 
+                                    placeholder="••••••••"
+                                    required
+                                >
+                                <span class="toggle-password" onclick="togglePassword('confirmPassword')">👁️</span>
+                            </div>
+                            <span class="error-msg" id="confirmError"></span>
+                        </div>
+
+                        <label class="premium-upgrade">
+                            <input type="checkbox" id="isPremium">
+                            <span>Upgrade to Premium (₹499/month)</span>
+                        </label>
+
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="termsAgree" required>
+                            <span>I agree to Terms & Conditions</span>
+                        </label>
+
+                        <button type="submit" class="btn btn-primary btn-large">Create Account</button>
+                    </form>
+
+                    <p class="form-footer">
+                        Already have an account? <a href="#" onclick="showLoginForm()">Login</a>
+                    </p>
+
+                    <button class="btn-back" onclick="prevPage()">← Back</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 5: Dashboard -->
+        <div class="page" id="page5">
+            <div class="page-content dashboard-content">
+                <div class="dashboard-container">
+                    <!-- Header -->
+                    <div class="dashboard-header">
+                        <div class="header-left">
+                            <div class="user-avatar">👤</div>
+                            <div class="user-info">
+                                <h3 id="dashboardName">Welcome, User</h3>
+                                <p id="dashboardEmail">user@example.com</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-logout" onclick="logout()">Logout</button>
+                    </div>
+
+                    <!-- Main Content -->
+                    <div class="dashboard-main">
+                        <!-- Premium Status Card -->
+                        <div class="dashboard-card premium-card" id="premiumCard">
+                            <div class="card-icon">💎</div>
+                            <h3>Premium Status</h3>
+                            <p id="premiumStatus">Free Account</p>
+                            <button class="btn btn-upgrade" onclick="nextPage()">Upgrade Now</button>
+                        </div>
+
+                        <!-- User Profile Card -->
+                        <div class="dashboard-card profile-card">
+                            <h3>Profile Information</h3>
+                            <div class="profile-info">
+                                <div class="info-row">
+                                    <span class="label">Full Name:</span>
+                                    <span id="profileName" class="value">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Email:</span>
+                                    <span id="profileEmail" class="value">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Phone:</span>
+                                    <span id="profilePhone" class="value">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Member Since:</span>
+                                    <span id="memberSince" class="value">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Features Card -->
+                        <div class="dashboard-card features-card">
+                            <h3>Available Features</h3>
+                            <div class="features-grid">
+                                <div class="feature-badge">
+                                    <span class="feature-check">✓</span>
+                                    <span>Secure Login</span>
+                                </div>
+                                <div class="feature-badge">
+                                    <span class="feature-check">✓</span>
+                                    <span>2FA Authentication</span>
+                                </div>
+                                <div class="feature-badge premium-only" id="feature1">
+                                    <span class="feature-check">🔒</span>
+                                    <span>Advanced Security</span>
+                                </div>
+                                <div class="feature-badge premium-only" id="feature2">
+                                    <span class="feature-check">🔒</span>
+                                    <span>Priority Support</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Settings Card -->
+                        <div class="dashboard-card settings-card">
+                            <h3>Settings</h3>
+                            <div class="settings-list">
+                                <button class="setting-item">
+                                    <span>🔐 Change Password</span>
+                                    <span>→</span>
+                                </button>
+                                <button class="setting-item">
+                                    <span>🔔 Notifications</span>
+                                    <span>→</span>
+                                </button>
+                                <button class="setting-item">
+                                    <span>🌙 Dark Mode</span>
+                                    <span>→</span>
+                                </button>
+                                <button class="setting-item">
+                                    <span>🗑️ Delete Account</span>
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 6: Premium Upgrade -->
+        <div class="page" id="page6">
+            <div class="page-content upgrade-content">
+                <div class="upgrade-container">
+                    <div class="upgrade-header">
+                        <h2>Unlock Premium Features</h2>
+                        <p>Get exclusive benefits with our premium plan</p>
+                    </div>
+
+                    <div class="pricing-cards">
+                        <div class="pricing-card basic">
+                            <div class="plan-name">Basic</div>
+                            <div class="plan-price">₹0<span>/month</span></div>
+                            <ul class="plan-features">
+                                <li>✓ Secure Login</li>
+                                <li>✓ Email Support</li>
+                                <li>✗ Advanced Security</li>
+                                <li>✗ Priority Support</li>
+                            </ul>
+                            <button class="btn btn-outline">Current Plan</button>
+                        </div>
+
+                        <div class="pricing-card premium">
+                            <div class="popular-badge">MOST POPULAR</div>
+                            <div class="plan-name">Premium</div>
+                            <div class="plan-price">₹499<span>/month</span></div>
+                            <ul class="plan-features">
+                                <li>✓ Secure Login</li>
+                                <li>✓ Email Support</li>
+                                <li>✓ Advanced Security</li>
+                                <li>✓ Priority Support</li>
+                            </ul>
+                            <button class="btn btn-primary" onclick="upgradePremium()">Upgrade Now</button>
+                        </div>
+
+                        <div class="pricing-card enterprise">
+                            <div class="plan-name">Enterprise</div>
+                            <div class="plan-price">₹999<span>/month</span></div>
+                            <ul class="plan-features">
+                                <li>✓ Everything in Premium</li>
+                                <li>✓ 24/7 Phone Support</li>
+                                <li>✓ Custom Integration</li>
+                                <li>✓ Dedicated Manager</li>
+                            </ul>
+                            <button class="btn btn-outline">Contact Sales</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-back" onclick="prevPage()">← Back to Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <span class="dot active" onclick="goToPage(1)"></span>
+        <span class="dot" onclick="goToPage(2)"></span>
+        <span class="dot" onclick="goToPage(3)"></span>
+        <span class="dot" onclick="goToPage(4)"></span>
+        <span class="dot" onclick="goToPage(5)"></span>
+        <span class="dot" onclick="goToPage(6)"></span>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
